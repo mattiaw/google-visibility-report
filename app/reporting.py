@@ -1,6 +1,8 @@
 from __future__ import annotations
 
 from datetime import date
+from pathlib import Path
+import re
 
 from app.models import PageMetric, QueryMetric, Recommendation, SiteMetrics, VisibilityReport
 
@@ -11,6 +13,28 @@ def _pct(value: float) -> str:
 
 def _period_label(start: date, end: date) -> str:
     return f"{start.isoformat()} through {end.isoformat()}"
+
+
+def _safe_file_stem(value: str) -> str:
+    stem = value.replace("https://", "").replace("http://", "").strip("/").lower()
+    stem = re.sub(r"[^a-z0-9]+", "-", stem)
+    return stem.strip("-") or "site"
+
+
+def default_text_report_path(report: VisibilityReport, reports_dir: Path = Path("reports")) -> Path:
+    period = report.period_label.replace(" through ", "_to_")
+    return reports_dir / f"{_safe_file_stem(report.site_url)}_{period}.txt"
+
+
+def save_text_report(
+    report: VisibilityReport,
+    output_path: Path | None = None,
+    reports_dir: Path = Path("reports"),
+) -> Path:
+    destination = output_path or default_text_report_path(report, reports_dir=reports_dir)
+    destination.parent.mkdir(parents=True, exist_ok=True)
+    destination.write_text(render_text_report(report), encoding="utf-8")
+    return destination
 
 
 def _top_by_impressions(items: list[PageMetric | QueryMetric], limit: int = 5):

@@ -4,7 +4,7 @@ import argparse
 from datetime import date
 from pathlib import Path
 
-from app.reporting import build_visibility_report, render_text_report
+from app.reporting import build_visibility_report, render_text_report, save_text_report
 from app.search_console import GoogleSearchConsoleClient
 
 
@@ -32,6 +32,11 @@ def main() -> None:
     parser.add_argument("--start-date", help="Optional YYYY-MM-DD report start date.")
     parser.add_argument("--end-date", help="Optional YYYY-MM-DD report end date.")
     parser.add_argument(
+        "--output",
+        type=Path,
+        help="Optional text report path. Defaults to reports/<site>_<period>.txt.",
+    )
+    parser.add_argument(
         "--list-sites",
         action="store_true",
         help="List Search Console properties visible to this Google login, then exit.",
@@ -55,7 +60,10 @@ def main() -> None:
         end_date=_parse_date(args.end_date),
     )
     report = build_visibility_report(metrics)
-    print(render_text_report(report))
+    text = render_text_report(report)
+    saved_path = save_text_report(report, output_path=args.output)
+    print(text)
+    print(f"Saved report to {saved_path}")
 
 
 if __name__ == "__main__":

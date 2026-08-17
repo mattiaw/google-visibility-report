@@ -3,7 +3,7 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
-from app.reporting import build_visibility_report, render_text_report
+from app.reporting import build_visibility_report, default_text_report_path, render_text_report, save_text_report
 from app.search_console import metrics_from_dict
 
 
@@ -33,4 +33,16 @@ def test_text_report_contains_small_business_language() -> None:
     assert "Weekly Google Visibility Report" in text
     assert "Top recommendations" in text
     assert "open play near massapequa" in text
+
+
+def test_text_report_can_be_saved_to_default_path(tmp_path) -> None:
+    report = build_visibility_report(load_sample())
+
+    expected = tmp_path / "childslot-com_2026-08-10_to_2026-08-16.txt"
+    assert default_text_report_path(report, reports_dir=tmp_path) == expected
+
+    saved_path = save_text_report(report, reports_dir=tmp_path)
+
+    assert saved_path == expected
+    assert saved_path.read_text(encoding="utf-8").startswith("Weekly Google Visibility Report")
 
