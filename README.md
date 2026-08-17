@@ -52,6 +52,20 @@ Generate a text report from sample data:
 .\.venv\Scripts\python.exe -m app.cli sample_data/childslot_week.json
 ```
 
+Generate a live Search Console report after downloading OAuth credentials:
+
+```powershell
+.\.venv\Scripts\python.exe -m app.live_report --site-url "sc-domain:childslot.com" --client-secrets .\client_secret.json
+```
+
+List the Search Console properties available to your Google login:
+
+```powershell
+.\.venv\Scripts\python.exe -m app.live_report --site-url "sc-domain:childslot.com" --client-secrets .\client_secret.json --list-sites
+```
+
+The first live run opens a Google OAuth approval window and saves a local token in `.gvr/token.json`. Do not commit `client_secret.json` or `.gvr/token.json`; both are ignored by Git.
+
 ## Environment Variables
 
 For email delivery:

@@ -4,6 +4,9 @@ __pycache__/
 .ruff_cache/
 .mypy_cache/
 .env
+.gvr/
+client_secret*.json
+token*.json
 *.pyc
 *.db
 *.sqlite
