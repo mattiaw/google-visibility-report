@@ -1,0 +1,71 @@
+{
+  "site_url": "https://childslot.com/",
+  "period_start": "2026-08-10",
+  "period_end": "2026-08-16",
+  "total_clicks": 1,
+  "total_impressions": 42,
+  "average_ctr": 0.0238,
+  "average_position": 18.4,
+  "indexed_homepage": true,
+  "sitemaps": [
+    {
+      "url": "https://childslot.com/sitemap.xml",
+      "discovered_pages": 11,
+      "status": "success",
+      "last_read": "2026-08-16"
+    }
+  ],
+  "queries": [
+    {
+      "query": "open play near massapequa",
+      "clicks": 1,
+      "impressions": 12,
+      "ctr": 0.0833,
+      "position": 11.6
+    },
+    {
+      "query": "indoor play floral park",
+      "clicks": 0,
+      "impressions": 10,
+      "ctr": 0.0,
+      "position": 16.3
+    },
+    {
+      "query": "rainy day kids activities long island",
+      "clicks": 0,
+      "impressions": 8,
+      "ctr": 0.0,
+      "position": 22.1
+    }
+  ],
+  "pages": [
+    {
+      "url": "https://childslot.com/",
+      "clicks": 1,
+      "impressions": 15,
+      "ctr": 0.0667,
+      "position": 12.2,
+      "indexed": true,
+      "indexing_status": "indexed"
+    },
+    {
+      "url": "https://childslot.com/open-play-near/massapequa-park-ny",
+      "clicks": 0,
+      "impressions": 14,
+      "ctr": 0.0,
+      "position": 15.1,
+      "indexed": true,
+      "indexing_status": "indexed"
+    },
+    {
+      "url": "https://childslot.com/open-play-near/floral-park-ny",
+      "clicks": 0,
+      "impressions": 13,
+      "ctr": 0.0,
+      "position": 20.4,
+      "indexed": true,
+      "indexing_status": "indexed"
+    }
+  ]
+}
+
